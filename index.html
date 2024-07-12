@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From Imitation to Refinement—Residual RL for Precise Visual Assembly</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">From Imitation to Refinement—Residual RL for Precise Visual
+              Assembly</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://ankile.com" target="_blank">Lars Ankile</a><sup>1,2,3</sup>,</span>
+              <span class="author-block">
+                <a href="https://anthonysimeonov.github.io/" target="_blank">Anthony Simeonov</a><sup>2,3</sup>,</span>
+              <span class="author-block">
+                <a href="https://idanshen.github.io/" target="_blank">Idan Shenfeld</a><sup>2,3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://marceltorne.github.io/" target="_blank">Marcel Torne</a><sup>2,3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://people.csail.mit.edu/pulkitag/" target="_blank">Pulkit Agrawal</a><sup>2,3</sup>,
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Massachusetts Institute of Technology</span>
+              <span class="author-block"><sup>2</sup>Improbable AI Lab</span>
+              <span class="author-block"><sup>3</sup>Harvard University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href="./static/pdf/Appendix_Learning_Robust_policies_for_Long_Horizon_Robotic_Assembly_Tasks.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Appendix</span>
+                  </a>
+                </span> -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (coming soon)</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video (coming soon)</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/ankile/robust-assembly"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data (coming soon)</span>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <!-- <source src="./static/videos/IROS_short.mp4" type="video/mp4"> -->
+          <source src="#" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          From Imitation to Refinement—Residual RL for Precise Visual Assembly
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Behavior cloning (BC) currently stands as a dominant paradigm for learning real-world visual manipulation.
+              However, in tasks that require locally corrective behaviors like multi-part assembly, learning robust
+              policies purely from human demonstrations remains challenging.
+              Reinforcement learning (RL) can mitigate these limitations by allowing policies to acquire locally
+              corrective behaviors through task reward supervision and exploration.
+              This paper explores the use of RL fine-tuning to improve upon BC-trained policies in precise manipulation
+              tasks.
+              We analyze and overcome technical challenges associated with using RL to directly train policy networks
+              that incorporate modern architectural components like diffusion models and action chunking.
+              We propose training residual policies on top of frozen BC-trained diffusion models using standard policy
+              gradient methods and sparse rewards.
+              Our experimental results demonstrate that this residual learning framework can significantly improve
+              success rates beyond the base BC-trained models in high-precision assembly tasks by learning corrective
+              actions. We also show that by combining our residual learning approach with teacher-student distillation
+              and visual domain randomization, our method can enable learning real-world policies for robotic assembly
+              directly from RGB images.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+      <!-- Concurrent Work. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Related Links</h2>
+
+          <div class="content has-text-justified">
+            <p>
+              There's a lot of excellent work related to ours in the space of manipulation and assembly, for
+              example:
+            </p>
+            <p>
+              <a href="https://clvrai.github.io/furniture-bench/">FurnitureBench</a> introduces a real-world furniture
+              assembly benchmark, which aims at providing a reproducible and easy-to-use platform for long-horizon
+              complex robotic manipulation that we use in our work.
+            </p>
+            <p>
+              <a href="http://asap.csail.mit.edu/">ASAP</a> is a physics-based planning approach for automatically
+              generating sequences for general-shaped assemblies, accounting for gravity to design a sequence where each
+              sub-assembly is physically stable.
+            </p>
+            <p><a href="https://ieeexplore.ieee.org/abstract/document/9645269">InsertionNet 1.0</a> and <a
+                href="https://ieeexplore.ieee.org/abstract/document/10016821">2.0</a> address the problem of insertion
+              specifically and propose regression-based methods that combine visual and force inputs to solve various
+              insertion tasks efficiently and robustly. InsertionNet 2.0 improves upon the original by introducing
+              multimodal input, contrastive learning, and a one-shot learning technique using a relation network scheme,
+              achieving near-perfect performance on 16 real-life insertion tasks while minimizing execution time and
+              contact during insertion.</p>
+            <p>
+              <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9561662">Grasping with Chopsticks</a>
+              develops an autonomous chopsticks-equipped robotic manipulator for picking up small objects using mainly
+              two approaches to reduce covariate shift and improve generalization: applying an invariant operator to
+              increase data support at critical grasping steps and generating synthetic corrective labels to prevent
+              error accumulation.
+            </p>
+            <p>
+              There's been an increasing amount of theoretical analysis of imitation learning, with recent works
+              focusing on the properties of noise injection and corrective actions. <a
+                href="https://arxiv.org/abs/2307.14619">Provable Guarantees for Generative Behavior Cloning</a> proposes
+              a framework for generative behavior cloning, ensuring continuity through data augmentation and noise
+              injection. <a href="https://arxiv.org/abs/2310.12972">CCIL</a> generates corrective data using local
+              continuity in environment dynamics, while <a href="https://arxiv.org/abs/2205.14812">TaSIL</a> penalizes
+              deviations in higher-order Taylor series terms between learned and expert policies. These works aim to
+              enhance the robustness and sample efficiency of imitation learning algorithms.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Concurrent Work. -->
+
+
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <!-- <pre><code>@article{ankile2024juicer,
+  author    = {Ankile, Lars and Simeonov, Anthony and Shenfeld, Idan and Agrawal, Pulkit},
+  title     = {JUICER: Data-Efficient Imitation Learning for Robotic Assembly},
+  journal   = {arXiv},
+  year      = {2024},
+}
+</code></pre> -->
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="#">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/ankile" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
