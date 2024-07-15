@@ -129,7 +129,7 @@
                 </span>
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/ankile/robust-assembly"
+                  <a href="https://github.com/ankile/robust-rearrangement"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -162,10 +162,11 @@
       <div class="hero-body">
         <video id="teaser" autoplay muted loop playsinline height="100%">
           <!-- <source src="./static/videos/IROS_short.mp4" type="video/mp4"> -->
-          <source src="https://youtu.be/AsasJJ2jlw8" type="video/mp4">
+          <source src="https://robust-rearrangement-videos.s3.amazonaws.com/Website+video.m4v" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          From Imitation to Refinement—Residual RL for Precise Visual Assembly
+          Perform complex assembly tasks in the real world from RGB observations by learning from demonstrations and
+          refining with reinforcement learning.
         </h2>
       </div>
     </div>
@@ -185,12 +186,18 @@
               policies purely from human demonstrations remains challenging.
               Reinforcement learning (RL) can mitigate these limitations by allowing policies to acquire locally
               corrective behaviors through task reward supervision and exploration.
+            </p>
+
+            <p>
               This paper explores the use of RL fine-tuning to improve upon BC-trained policies in precise manipulation
               tasks.
               We analyze and overcome technical challenges associated with using RL to directly train policy networks
               that incorporate modern architectural components like diffusion models and action chunking.
               We propose training residual policies on top of frozen BC-trained diffusion models using standard policy
               gradient methods and sparse rewards.
+            </p>
+
+            <p>
               Our experimental results demonstrate that this residual learning framework can significantly improve
               success rates beyond the base BC-trained models in high-precision assembly tasks by learning corrective
               actions. We also show that by combining our residual learning approach with teacher-student distillation
@@ -203,15 +210,15 @@
       <!--/ Abstract. -->
 
       <!-- Paper video. -->
-      <!-- <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/watch?v=AsasJJ2jlw8" frameborder="0" allow="autoplay; encrypted-media"
+              allowfullscreen></iframe>
+          </div>
         </div>
       </div>
-    </div> -->
       <!--/ Paper video. -->
     </div>
   </section>
