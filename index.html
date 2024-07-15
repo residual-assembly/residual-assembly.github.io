@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.png">
+  <link rel="icon" href="./static/images/151621-chef-vector-hat-png-image-high-quality-2642634052.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -74,8 +74,11 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">From Imitation to Refinement—Residual RL for Precise Visual
-              Assembly</h1>
+            <h1 class="title is-1 publication-title">
+              <i style="font-size: 1.2em">From Imitation to Refinement</i> <br> Residual RL for Precise Visual
+              Assembly
+            </h1>
+
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://ankile.com" target="_blank">Lars Ankile</a><sup>1,2,3</sup>,</span>
@@ -96,6 +99,12 @@
               <span class="author-block"><sup>1</sup>Massachusetts Institute of Technology</span>
               <span class="author-block"><sup>2</sup>Improbable AI Lab</span>
               <span class="author-block"><sup>3</sup>Harvard University</span>
+            </div>
+
+            <div class="image-container">
+              <img src="./static/images/MIT_logo.png" alt="MIT Logo" width="12%" style="margin: 1em 0;">
+              <img src="./static/images/Shield_CMYK.png" alt="Harvard Logo" width="7%" style="margin: 1em 0;">
+              <img src="./static/images/iai-logo-ver_1.jpg" alt="Improbable AI Logo" width="10%" style="margin: 1em 0;">
             </div>
 
             <div class="column has-text-centered">
@@ -134,7 +143,7 @@
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Code (coming soon)</span>
                   </a>
                 </span>
                 <!-- Dataset Link. -->
@@ -210,7 +219,7 @@
       <!--/ Abstract. -->
 
       <!-- Paper video. -->
-      <div class="columns is-centered has-text-centered">
+      <!-- <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">Video</h2>
           <div class="publication-video">
@@ -218,12 +227,194 @@
               allowfullscreen></iframe>
           </div>
         </div>
-      </div>
+      </div> -->
       <!--/ Paper video. -->
     </div>
   </section>
 
 
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Real-World Demos</h2>
+
+      <!-- Start One Leg White -->
+      <h3 class="title is-4">Improved assembly on in-distribution task</h3>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3>40 Real Demos</h3>
+          <div class="content has-text-centered is-full-width">
+            <video id="teaser" autoplay muted loop playsinline height="100%">
+              <source src="https://robust-rearrangement-videos.s3.amazonaws.com/3_40_real_annot.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="column is-full-width">
+          <h3>40 Real Demos + 350 RL Sim Demos</h3>
+          <div class="content has-text-centered is-full-width">
+            <video id="teaser" autoplay muted loop playsinline height="100%">
+              <source src="https://robust-rearrangement-videos.s3.amazonaws.com/4_40_real_350_sim_annot.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!-- End One Leg White -->
+
+      <!-- Start Lamp -->
+      <h3 class="title is-4">Pipeline is task-agnostic</h3>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3>40 Real Demos + 400 RL Sim Demos</h3>
+          <div class="content has-text-centered is-full-width">
+            <video autoplay muted loop playsinline height="100%">
+              <source src="https://robust-rearrangement-videos.s3.amazonaws.com/7_lamp_40_real_400_sim_1x_annot_1.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="column is-full-width">
+          <h3>40 Real Demos + 400 RL Sim Demos</h3>
+          <div class="content has-text-centered is-full-width">
+            <video id="teaser" autoplay muted loop playsinline height="100%">
+              <source src="https://robust-rearrangement-videos.s3.amazonaws.com/7_lamp_40_real_400_sim_1x_annot_2.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!-- End Lamp -->
+
+      <!-- Start One Leg Black -->
+      <h3 class="title is-4">Simulation allows for assembly of unseen publication-authors</h3>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h3>40 Real Demos</h3>
+          <div class="content has-text-centered is-full-width">
+            <video autoplay muted loop playsinline height="100%">
+              <source src="https://robust-rearrangement-videos.s3.amazonaws.com/5_black_40_real_explanation.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="column is-full-width">
+          <h3>40 Real Demos + 400 RL Sim Demos</h3>
+          <div class="content has-text-centered is-full-width">
+            <video autoplay muted loop playsinline height="100%">
+              <source src="https://robust-rearrangement-videos.s3.amazonaws.com/6_black_40_real_400_sim_annot.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!-- End One Leg Blacks -->
+
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Methods</h2>
+
+          <h3 class="title is-4">System Overview</h3>
+
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+          <div class="content has-text-centered is-full-width">
+            <img src="./static/images/framework_overview.svg" alt="A schematic representation of the JUICER method"
+              style="width: 100%;">
+          </div>
+
+          <p>
+          </p>
+
+          <!-- Add some vertical space -->
+          <br>
+
+
+          <h3 class="title is-4">Residual RL over Action Chunks</h3>
+
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+          <div class="content has-text-centered is-full-width">
+            <img src="./static/images/ResidualDiffusionDiagram.svg"
+              alt="A schematic representation of the trajectory augmentation tool" style="width: 40%;">
+          </div>
+
+          <p>
+          </p>
+
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Results</h2>
+
+          <h3 class="title is-4">Comparing RL to BC and baselines</h3>
+
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+          <div class="content has-text-centered is-full-width">
+            <img src="./static/images/table_imitation 2.svg" alt="The main results presented as a grouped barchart"
+              style="width: 80%;">
+          </div>
+          <p>
+          </p>
+
+          <!-- Add some vertical space -->
+          <br>
+
+          <h3 class="title is-4">Distilling from RL expert improves performance</h3>
+
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+          <div class="content has-text-centered is-full-width image-container">
+            <img src="./static/images/distillation.svg" alt="Success rate for the one_leg task with and without JUICER"
+              width="30%">
+            <img src="./static/images/scaling.svg" alt="Description for the second image">
+          </div>
+          <!-- Add some vertical space -->
+          <br>
+
+          <h3 class="title is-4">Simulation data improves performance in the real-world</h3>
+
+          <div class="content has-text-justified">
+            <p>
+            </p>
+          </div>
+          <div class="content has-text-centered is-full-width">
+            <img src="./static/images/real_results_table.svg"
+              alt="Success rate for the one_leg task with and without JUICER" style="width: 100%;">
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </section>
 
 
   <section class="section">
@@ -287,13 +478,15 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <!-- <pre><code>@article{ankile2024juicer,
-  author    = {Ankile, Lars and Simeonov, Anthony and Shenfeld, Idan and Agrawal, Pulkit},
-  title     = {JUICER: Data-Efficient Imitation Learning for Robotic Assembly},
-  journal   = {arXiv},
-  year      = {2024},
+      <pre><code>@inproceedings{
+        ankile2024from,
+        title={From Imitation to Refinement {\textendash} Residual {RL} for Precise Visual Assembly},
+        author={Lars Lien Ankile and Anthony Simeonov and Idan Shenfeld and Marcel Torne Villasevil and Pulkit Agrawal},
+        booktitle={RSS 2024 Workshop: Data Generation for Robotics},
+        year={2024},
+        url={https://openreview.net/forum?id=eSNLGFo6nu}
 }
-</code></pre> -->
+</code></pre>
     </div>
   </section>
 

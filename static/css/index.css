@@ -29,6 +29,10 @@ body {
 
 
 .publication-title {
+  font-size: 3em;
+  background: linear-gradient(to right, #00bfff, #ff00ff);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .publication-banner {
@@ -154,4 +158,18 @@ body {
 }
 #interpolation-image-wrapper img {
   border-radius: 5px;
+}
+
+
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em; /* Adjust the gap between images as needed */
+  margin: 1em 0;
+}
+
+.image-container img {
+  margin: 0; /* Remove individual image margins */
 }
