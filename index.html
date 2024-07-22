@@ -314,14 +314,29 @@
           <h3 class="title is-4">System Overview</h3>
 
           <div class="content has-text-justified">
-            <p>
-            </p>
+            <p>This research presents a pipeline for teaching robots to perform complex assembly tasks using
+              vision-based inputs. The approach combines behavioral cloning (BC) and reinforcement learning (RL)
+              techniques to develop robotic systems capable of precise manipulation.</p>
+
+            <p>The process involves training an initial policy through BC in simulation, enhancing it with RL, and then
+              translating the improved behaviors into a vision-based policy operating from RGB images. By integrating
+              synthetic data with real-world demonstrations, the method aims to create assembly policies that can be
+              effectively deployed in real-world scenarios.</p>
+
+            <p>This approach addresses challenges in robotic learning, including the need for high precision,
+              adaptability to various initial conditions, and the ability to operate directly from visual data.</p>
           </div>
           <div class="content has-text-centered is-full-width">
             <img src="./static/images/framework_overview.svg" alt="" style="width: 100%;">
           </div>
 
           <p>
+            <i>Fig. 1:</i>
+            <strong>(1)</strong> Beginning with a policy trained with BC insimulation,
+            <strong>(2)</strong> we train residual policies to improve task success rates with RL and sparse rewards.
+            <strong>(3)</strong> We then distill the resulting behaviors to a policy that operates on RGB images.
+            <strong>(4)</strong> By combining synthetic data with a small set of real demonstrations,
+            <strong>(5)</strong> we deploy assembly policies that operate from RGB images in the real world.
           </p>
 
           <!-- Add some vertical space -->
@@ -332,13 +347,27 @@
 
           <div class="content has-text-justified">
             <p>
+              Per-timestep residual policies trained with PPO to locally correct action chunks predicted by a BC-trained
+              diffusion policy:
             </p>
+            <ul>
+              <li><strong>Base Model (Diffusion Policy):</strong> Predicts action chunks, trained via behavioral
+                cloning.</li>
+              <li><strong>Residual Model:</strong> Makes per-timestep corrections, trained with reinforcement learning.
+              </li>
+            </ul>
+
+
+            <p>This approach combines behavioral cloning and reinforcement learning, allowing flexible optimization
+              without modifying the base model.</p>
           </div>
           <div class="content has-text-centered is-full-width">
             <img src="./static/images/ResidualDiffusionDiagram.svg" alt="" style="width: 40%;">
           </div>
 
           <p>
+            <i>Fig. 2:</i> Per-timestep residual policies trained with PPO to locally correct action chunks predicted by
+            a BC-trained diffusion policy.
           </p>
 
         </div>
@@ -359,40 +388,105 @@
           <h3 class="title is-4">Comparing RL to BC and baselines</h3>
 
           <div class="content has-text-justified">
-            <p>
-            </p>
+            <p>Table 1 demonstrates the effectiveness of different approaches in robotic assembly tasks. Key findings
+              include:</p>
+
+            <ul>
+              <li>Basic MLPs without action chunking (MLP-S) fail completely across all tasks.</li>
+              <li>Diffusion Policies (DP) generally outperform MLPs with chunking (MLP-C) in imitation learning.</li>
+              <li>Our proposed method, ResiP, which uses residual policies trained with RL on top of frozen diffusion
+                policies, consistently achieves the highest success rates across all tasks and difficulty levels.</li>
+              <li>ResiP shows significant improvements over both imitation learning baselines and alternative RL
+                fine-tuning methods, particularly in tasks with lower initial randomization.</li>
+            </ul>
           </div>
           <div class="content has-text-centered is-full-width">
             <img src="./static/images/table_imitation 2.svg" alt="" style="width: 80%;">
           </div>
           <p>
+            <i>Tab. 1:</i> <strong>Top</strong> BC-trained MLPs without chunking (MLP-S) cannot perform any of the
+            tasks, and
+            Diffusion
+            Policies (DP) generally outperform MLPs with chunking (MLP-C). <strong>Bottom</strong> Training our proposed
+            residual policies with RL on top of frozen diffusion policies performs the best among all evaluated
+            fine-tuning techniques.
           </p>
 
           <!-- Add some vertical space -->
-          <br>
+          <br><br>
 
           <h3 class="title is-4">Distilling from RL expert improves performance</h3>
 
           <div class="content has-text-justified">
-            <p>
-            </p>
+            <p>These experiments investigate the effectiveness of distilling a reinforcement learning (RL) policy
+              trained in simulation into a vision-based policy for real-world deployment. The study focuses on how the
+              quantity and quality of synthetic RL data impact the performance of the distilled policies. The
+              experiments compare policies trained directly on human demonstrations with those distilled from RL agents,
+              and explore the effects of dataset size and modality (state-based vs. image-based) on distillation
+              performance.</p>
+
+            <p>Key Findings:</p>
+
+            <ul>
+              <li>Distilling trajectories from the RL agent (73% success rate) outperforms training directly on human
+                demonstrations (50% success rate).</li>
+              <li>A performance gap exists between the RL-trained teacher (95%) and the distilled student policy (73%).
+              </li>
+              <li>The change in modality (state-based to image-based) is not the primary cause of this performance gap.
+              </li>
+              <li>Increasing the distillation dataset size improves performance, but a gap persists even with large
+                datasets (77% success rate with 10k trajectories vs. 95% for the teacher).</li>
+              <li>The ability to generate large-scale synthetic datasets in simulation provides a significant advantage
+                for improving distilled policy performance.</li>
+            </ul>
           </div>
           <div class="content has-text-centered is-full-width image-container">
-            <img src="./static/images/distillation.svg" alt="" width="30%">
-            <img src="./static/images/scaling.svg" alt="">
+            <div>
+              <img src="./static/images/distillation.svg" alt="" width="50%">
+              <p><i>Fig. 4:</i> Comparison of distilled performance from BC and RL-based teacher.</p>
+            </div>
+            <div>
+              <img src="./static/images/scaling.svg" alt="">
+              <p><i>Fig. 5:</i> BC distillation scaling with dataset size.</p>
+            </div>
           </div>
           <!-- Add some vertical space -->
-          <br>
+          <br><br>
 
           <h3 class="title is-4">Simulation data improves performance in the real-world</h3>
 
           <div class="content has-text-justified">
+            <p>These experiments evaluate the performance of sim-to-real policies on a physical robot. The study
+              compares policies trained on a mixture of real-world demonstrations and simulation data against those
+              trained solely on real-world demonstrations. The experiments focus on the "one leg" task, with trials
+              involving randomized part poses and obstacle poses.</p>
+
             <p>
+              Key Findings:
             </p>
+
+            <ul>
+              <li>Incorporating simulation data significantly improves real-world performance, increasing task
+                completion rates from 20-30% to 50-60%.</li>
+              <li>Policies co-trained with simulation data exhibit smoother behavior and make fewer erratic movements.
+              </li>
+              <li>Performance improvements are observed across various subtasks (corner alignment, grasping, insertion,
+                and screwing).</li>
+              <li>The combination of 40 real demonstrations and 350 simulated trajectories yields the best results, with
+                up to 60% task completion rate.</li>
+              <li>Co-trained policies show improved generalization to both part pose and obstacle pose randomizations.
+              </li>
+            </ul>
+
+            <p>These results demonstrate the effectiveness of combining real-world demonstrations with simulation data
+              for improving the performance and robustness of robotic assembly policies in real-world settings.</p>
           </div>
           <div class="content has-text-centered is-full-width">
             <img src="./static/images/real_results_table.svg" alt="" style="width: 100%;">
           </div>
+          <p><i>Tab. 2:</i> We compare the impact of combining real-world demonstrations with simulation trajectories
+            obtained by rolling our RL-trained residual policies. We find that co-training with both real and synthetic
+            data leads to improved motion quality and success rate on the one_leg task.</p>
 
         </div>
       </div>
