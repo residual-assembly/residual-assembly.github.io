@@ -232,7 +232,7 @@
       <h3 class="title is-4">Improved assembly on in-distribution task</h3>
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h3>40 Real Demos</h3>
+          <h3 class="title is-5">40 Real Demos</h3>
           <div class="content has-text-centered is-full-width">
             <video id="teaser" autoplay muted loop playsinline height="100%">
               <source src="https://robust-rearrangement-videos.s3.amazonaws.com/3_40_real_annot.mp4" type="video/mp4">
@@ -240,7 +240,7 @@
           </div>
         </div>
         <div class="column is-full-width">
-          <h3>40 Real Demos + 350 RL Sim Demos</h3>
+          <h3 class="title is-5">40 Real Demos + 350 RL Sim Demos</h3>
           <div class="content has-text-centered is-full-width">
             <video id="teaser" autoplay muted loop playsinline height="100%">
               <source src="https://robust-rearrangement-videos.s3.amazonaws.com/4_40_real_350_sim_annot.mp4"
@@ -251,11 +251,13 @@
       </div>
       <!-- End One Leg White -->
 
+      <br>
+
       <!-- Start Lamp -->
       <h3 class="title is-4">Pipeline is task-agnostic</h3>
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h3>40 Real Demos + 400 RL Sim Demos</h3>
+          <h3 class="title is-5">40 Real Demos + 400 RL Sim Demos</h3>
           <div class="content has-text-centered is-full-width">
             <video autoplay muted loop playsinline height="100%">
               <source src="https://robust-rearrangement-videos.s3.amazonaws.com/7_lamp_40_real_400_sim_1x_annot_1.mp4"
@@ -264,7 +266,7 @@
           </div>
         </div>
         <div class="column is-full-width">
-          <h3>40 Real Demos + 400 RL Sim Demos</h3>
+          <h3 class="title is-5">40 Real Demos + 400 RL Sim Demos</h3>
           <div class="content has-text-centered is-full-width">
             <video id="teaser" autoplay muted loop playsinline height="100%">
               <source src="https://robust-rearrangement-videos.s3.amazonaws.com/7_lamp_40_real_400_sim_1x_annot_2.mp4"
@@ -275,11 +277,13 @@
       </div>
       <!-- End Lamp -->
 
+      <br>
+
       <!-- Start One Leg Black -->
       <h3 class="title is-4">Simulation allows for assembly of unseen parts</h3>
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h3>40 Real Demos</h3>
+          <h3 class="title is-5">40 Real Demos</h3>
           <div class="content has-text-centered is-full-width">
             <video autoplay muted loop playsinline height="100%">
               <source src="https://robust-rearrangement-videos.s3.amazonaws.com/5_black_40_real_explanation.mp4"
@@ -288,7 +292,7 @@
           </div>
         </div>
         <div class="column is-full-width">
-          <h3>40 Real Demos + 400 RL Sim Demos</h3>
+          <h3 class="title is-5">40 Real Demos + 400 RL Sim Demos</h3>
           <div class="content has-text-centered is-full-width">
             <video autoplay muted loop playsinline height="100%">
               <source src="https://robust-rearrangement-videos.s3.amazonaws.com/6_black_40_real_400_sim_annot.mp4"
@@ -314,14 +318,14 @@
           <h3 class="title is-4">System Overview</h3>
 
           <div class="content has-text-justified">
-            <p>This research presents a pipeline for teaching robots to perform complex assembly tasks using
-              vision-based inputs. The approach combines behavioral cloning (BC) and reinforcement learning (RL)
+            <p>We present a pipeline for teaching robots to perform complex assembly tasks from RGB observations. The
+              approach combines behavioral cloning (BC) and reinforcement learning (RL)
               techniques to develop robotic systems capable of precise manipulation.</p>
 
             <p>The process involves training an initial policy through BC in simulation, enhancing it with RL, and then
-              translating the improved behaviors into a vision-based policy operating from RGB images. By integrating
-              synthetic data with real-world demonstrations, the method aims to create assembly policies that can be
-              effectively deployed in real-world scenarios.</p>
+              distilling the improved policy into a vision-based policy operating from RGB images. By integrating
+              synthetic data with real-world demonstrations, we can create assembly policies that can be
+              effectively deployed in the real-world.</p>
 
             <p>This approach addresses challenges in robotic learning, including the need for high precision,
               adaptability to various initial conditions, and the ability to operate directly from visual data.</p>
@@ -347,6 +351,11 @@
 
           <div class="content has-text-justified">
             <p>
+              For long-horizon and complex tasks, modern policy architectural choices, like action chunks and diffusion,
+              are necessary to achieve a non-zero task success from BC, which is necessary for downstream RL. However,
+              this introduces complications for the RL finetuning. We opt for residual policies as a solution.
+            </p>
+            <p>
               Per-timestep residual policies trained with PPO to locally correct action chunks predicted by a BC-trained
               diffusion policy:
             </p>
@@ -369,6 +378,38 @@
             <i>Fig. 2:</i> Per-timestep residual policies trained with PPO to locally correct action chunks predicted by
             a BC-trained diffusion policy.
           </p>
+
+          <br><br>
+
+          <h3 class="title is-4">The residual model learns local corrections</h3>
+          <p>In the below videos, we visualize what the predictions made by the residuals look like and what the
+            corrections do to the resulting net action. In the videos, the <span style="color: red;">red line</span> is
+            the base action, the <span style="color: blue;">blue line</span> is the residual prediction, and the <span
+              style="color: green;">green line</span> is the resulting net action.</p>
+          <br>
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <h3 class="title is-5">Corrections during insertion</h3>
+              <div class="content has-text-centered is-full-width">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="https://robust-rearrangement-videos.s3.amazonaws.com/place_seq3.mp4" type="video/mp4">
+                </video>
+                <p>The peg comes down a bit to the right of the hole, and the base policy tries pushing the peg down,
+                  while the residual corrects the position so the insertion is successful.</p>
+              </div>
+            </div>
+            <div class="column is-full-width">
+              <h3 class="title is-5">Corrections during grasping</h3>
+              <div class="content has-text-centered is-full-width">
+                <video autoplay muted loop playsinline height="100%">
+                  <source src="https://robust-rearrangement-videos.s3.amazonaws.com/grasp_seq3.mp4" type="video/mp4">
+                </video>
+                <p>The base policy tries to go down with the peg too deep in the gripper, which would probably have
+                  caused a colision between the right finger and the other peg. The residual pushes the gripper back so
+                  that it can get the peg between the fingers without collision.</p>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -394,8 +435,6 @@
             <ul>
               <li>Basic MLPs without action chunking (MLP-S) fail completely across all tasks.</li>
               <li>Diffusion Policies (DP) generally outperform MLPs with chunking (MLP-C) in imitation learning.</li>
-              <li>Our proposed method, ResiP, which uses residual policies trained with RL on top of frozen diffusion
-                policies, consistently achieves the highest success rates across all tasks and difficulty levels.</li>
               <li>ResiP shows significant improvements over both imitation learning baselines and alternative RL
                 fine-tuning methods, particularly in tasks with lower initial randomization.</li>
             </ul>
@@ -405,17 +444,15 @@
           </div>
           <p>
             <i>Tab. 1:</i> <strong>Top</strong> BC-trained MLPs without chunking (MLP-S) cannot perform any of the
-            tasks, and
-            Diffusion
-            Policies (DP) generally outperform MLPs with chunking (MLP-C). <strong>Bottom</strong> Training our proposed
-            residual policies with RL on top of frozen diffusion policies performs the best among all evaluated
-            fine-tuning techniques.
+            tasks, and Diffusion Policies (DP) generally outperform MLPs with chunking (MLP-C). <strong>Bottom</strong>
+            Training our proposed residual policies with RL on top of frozen diffusion policies performs the best among
+            all evaluated fine-tuning techniques.
           </p>
 
           <!-- Add some vertical space -->
           <br><br>
 
-          <h3 class="title is-4">Distilling from RL expert improves performance</h3>
+          <h3 class="title is-4">Distilling from an RL expert improves performance</h3>
 
           <div class="content has-text-justified">
             <p>These experiments investigate the effectiveness of distilling a reinforcement learning (RL) policy
@@ -456,10 +493,9 @@
           <h3 class="title is-4">Simulation data improves performance in the real-world</h3>
 
           <div class="content has-text-justified">
-            <p>These experiments evaluate the performance of sim-to-real policies on a physical robot. The study
+            <p>These experiments evaluate the performance of sim-to-real policies on the physical robot. The study
               compares policies trained on a mixture of real-world demonstrations and simulation data against those
-              trained solely on real-world demonstrations. The experiments focus on the "one leg" task, with trials
-              involving randomized part poses and obstacle poses.</p>
+              trained solely on real-world demonstrations. The quantitative experiments focus on the "one leg" task.</p>
 
             <p>
               Key Findings:
@@ -504,45 +540,94 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
           <h2 class="title is-3">Related Links</h2>
-
           <div class="content has-text-justified">
             <p>
-              There's a lot of excellent work related to ours in the space of manipulation and assembly, for
-              example:
+              There's a lot of excellent work related to ours in the space of manipulation and assembly, reinforcement
+              learning, and diffusion models. Here are some notable examples:
             </p>
+
+            <h3>Manipulation and Assembly</h3>
+            <ul>
+              <li><a target="_blank" href="https://clvrai.com/furniture-bench">FurnitureBench</a> introduces a
+                real-world furniture
+                assembly benchmark, providing a reproducible and easy-to-use platform for long-horizon complex robotic
+                manipulation that we use in our work.</li>
+              <li><a target="_blank" href="https://arxiv.org/abs/2309.16909">ASAP</a> is a physics-based planning
+                approach for
+                automatically generating sequences for general-shaped assemblies, accounting for gravity to design a
+                sequence where each sub-assembly is physically stable.</li>
+              <li><a target="_blank" href="https://ieeexplore.ieee.org/abstract/document/9645269">InsertionNet 1.0</a>
+                and <a href="https://ieeexplore.ieee.org/abstract/document/10016821">InsertionNet 2.0</a> address the
+                problem
+                of insertion specifically and propose regression-based methods that combine visual and force inputs to
+                solve various insertion tasks efficiently and robustly.</li>
+              <li><a target="_blank" href="https://ieeexplore.ieee.org/abstract/document/9561662">Grasping with
+                  Chopsticks</a> develops
+                an autonomous chopsticks-equipped robotic manipulator for picking up small objects, using approaches to
+                reduce covariate shift and improve generalization.</li>
+            </ul>
+
+            <h3>Diffusion Models and Reinforcement Learning</h3>
             <p>
-              <a href="https://clvrai.github.io/furniture-bench/">FurnitureBench</a> introduces a real-world furniture
-              assembly benchmark, which aims at providing a reproducible and easy-to-use platform for long-horizon
-              complex robotic manipulation that we use in our work.
+              Recent work has explored combining diffusion models with reinforcement learning:
             </p>
+            <ul>
+              <li><a target="_blank" href="http://rl-diffusion.github.io/">Black et al.</a> and <a
+                  href="https://arxiv.org/abs/2305.16381">Fan et al.</a> studied how to cast diffusion de-noising as a
+                Markov Decision Process, enabling preference-aligned image generation with policy gradient RL.</li>
+              <li><a target="_blank" href="https://arxiv.org/abs/2304.10573">IDQL</a> uses a Q-function to select the
+                best among
+                multiple diffusion model outputs.</li>
+              <li><a target="_blank" href="https://arxiv.org/abs/2206.00695">Goo et al.</a> explored advantage weighted
+                regression for
+                diffusion models.</li>
+              <li><a target="_blank" href="https://anuragajay.github.io/decision-diffuser/">Decision
+                  Diffuser</a> and related works
+                change the
+                objective into a supervised learning problem with return conditioning.</li>
+              <li><a target="_blank" href="https://arxiv.org/abs/2208.06193">Wang et al.</a> explored augmenting the
+                de-noising training
+                objective with a Q-function maximization objective.</li>
+            </ul>
+
+            <h3>Residual Learning in Robotics</h3>
             <p>
-              <a href="http://asap.csail.mit.edu/">ASAP</a> is a physics-based planning approach for automatically
-              generating sequences for general-shaped assemblies, accounting for gravity to design a sequence where each
-              sub-assembly is physically stable.
+              Learning corrective residual components has seen widespread success in robotics:
             </p>
-            <p><a href="https://ieeexplore.ieee.org/abstract/document/9645269">InsertionNet 1.0</a> and <a
-                href="https://ieeexplore.ieee.org/abstract/document/10016821">2.0</a> address the problem of insertion
-              specifically and propose regression-based methods that combine visual and force inputs to solve various
-              insertion tasks efficiently and robustly. InsertionNet 2.0 improves upon the original by introducing
-              multimodal input, contrastive learning, and a one-shot learning technique using a relation network scheme,
-              achieving near-perfect performance on 16 real-life insertion tasks while minimizing execution time and
-              contact during insertion.</p>
-            <p>
-              <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9561662">Grasping with Chopsticks</a>
-              develops an autonomous chopsticks-equipped robotic manipulator for picking up small objects using mainly
-              two approaches to reduce covariate shift and improve generalization: applying an invariant operator to
-              increase data support at critical grasping steps and generating synthetic corrective labels to prevent
-              error accumulation.
-            </p>
+            <ul>
+              <li>Works like <a target="_blank" href="https://k-r-allen.github.io/residual-policy-learning/">Silver et
+                  al.</a>, <a target="_blank" href="https://arxiv.org/abs/2112.06749">Davchev et al.</a>, and others
+                have explored learning residual policies that correct for errors made by a nominal behavior policy.</li>
+              <li><a target="_blank" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8593995">Ajay et al.</a>
+                and <a target="_blank" href="https://journals.sagepub.com/doi/full/10.1177/0278364920954896">Kloss et
+                  al.</a> combined learned components to correct for inaccuracies in analytical models for physical
+                dynamics.</li>
+              <li><a target="_blank" href="https://industrial-insertion-rl.github.io/">Schoettler et al.</a> applied
+                residual policies to insertion tasks.</li>
+              <li><a target="_blank" href="https://transic-robot.github.io/"></a>TRANSIC by Jiang et al.</a> applied
+                residual policy learning to the FurnitureBench task suite, using the residual component to model online
+                human-provided corrections.</li>
+            </ul>
+
+            <h3>Theoretical Analysis of Imitation Learning</h3>
             <p>
               There's been an increasing amount of theoretical analysis of imitation learning, with recent works
-              focusing on the properties of noise injection and corrective actions. <a
-                href="https://arxiv.org/abs/2307.14619">Provable Guarantees for Generative Behavior Cloning</a> proposes
-              a framework for generative behavior cloning, ensuring continuity through data augmentation and noise
-              injection. <a href="https://arxiv.org/abs/2310.12972">CCIL</a> generates corrective data using local
-              continuity in environment dynamics, while <a href="https://arxiv.org/abs/2205.14812">TaSIL</a> penalizes
-              deviations in higher-order Taylor series terms between learned and expert policies. These works aim to
-              enhance the robustness and sample efficiency of imitation learning algorithms.
+              focusing on the properties of noise injection and corrective actions:
+            </p>
+            <ul>
+              <li><a target="_blank" href="https://arxiv.org/abs/2307.14619">Provable Guarantees for Generative Behavior
+                  Cloning</a>
+                proposes a framework for generative behavior cloning, ensuring continuity through data augmentation and
+                noise injection.</li>
+              <li><a target="_blank" href="https://arxiv.org/abs/2310.12972">CCIL</a> generates corrective data using
+                local continuity
+                in environment dynamics.</li>
+              <li><a target="_blank" href="https://arxiv.org/abs/2205.14812">TaSIL</a> penalizes deviations in
+                higher-order Taylor
+                series terms between learned and expert policies.</li>
+            </ul>
+            <p>
+              These works aim to enhance the robustness and sample efficiency of imitation learning algorithms.
             </p>
           </div>
         </div>
