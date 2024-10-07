@@ -176,30 +176,18 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
-            <p>
-              Behavior cloning (BC) currently stands as a dominant paradigm for learning real-world visual manipulation.
-              However, in tasks that require locally corrective behaviors like multi-part assembly, learning robust
-              policies purely from human demonstrations remains challenging.
-              Reinforcement learning (RL) can mitigate these limitations by allowing policies to acquire locally
-              corrective behaviors through task reward supervision and exploration.
-            </p>
-
-            <p>
-              This paper explores the use of RL fine-tuning to improve upon BC-trained policies in precise manipulation
-              tasks.
-              We analyze and overcome technical challenges associated with using RL to directly train policy networks
-              that incorporate modern architectural components like diffusion models and action chunking.
-              We propose training residual policies on top of frozen BC-trained diffusion models using standard policy
-              gradient methods and sparse rewards.
-            </p>
-
-            <p>
-              Our experimental results demonstrate that this residual learning framework can significantly improve
-              success rates beyond the base BC-trained models in high-precision assembly tasks by learning corrective
-              actions. We also show that by combining our residual learning approach with teacher-student distillation
-              and visual domain randomization, our method can enable learning real-world policies for robotic assembly
-              directly from RGB images.
-            </p>
+            Recent advances in behavior cloning (BC), like action-chunking and diffusion, have led to impressive
+            progress, but imitation alone remains insufficient for tasks requiring reliable and precise movements, such
+            as aligning and inserting objects. Our central insight is that chunked BC policies function as trajectory
+            planners, enabling long-horizon tasks, but because they execute action chunks in an open loop, they lack the
+            fine-grained reactivity necessary for reliable execution. Further, we find that the performance of BC
+            policies saturates despite increasing data. We present a simple yet effective method, <code>ResiP</code>
+            (<i>Resi</i>dual for <i>P</i>recise Manipulation), that sidesteps these challenges by augmenting a
+            frozen, chunked BC model with a fully closed-loop residual policy trained with reinforcement learning (RL)
+            that also overcomes the limitation of finetuning action-chunked diffusion policies with RL. The residual
+            policy is trained via on-policy RL, addressing distribution shifts and reactivity without altering the BC
+            trajectory planner. Evaluation on high-precision manipulation tasks demonstrates strong performance of
+            <code>ResiP</code> over BC methods and direct RL fine-tuning.
           </div>
         </div>
       </div>
