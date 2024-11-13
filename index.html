@@ -113,7 +113,7 @@
                   </a>
                 </span>
                 <!-- Video Link. -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a target="_blank" href="https://youtu.be/AsasJJ2jlw8"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
@@ -121,7 +121,7 @@
                     </span>
                     <span>3-Minute Video</span>
                   </a>
-                </span>
+                </span> -->
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a target="_blank" href="https://github.com/ankile/robust-rearrangement"
@@ -158,11 +158,12 @@
       <div class="hero-body">
         <video id="teaser" autoplay muted loop playsinline height="100%">
           <!-- <source src="./static/videos/IROS_short.mp4" type="video/mp4"> -->
-          <source src="https://robust-rearrangement-videos.s3.amazonaws.com/Website+video.m4v" type="video/mp4">
+          <source src="https://iai-robust-rearrangement.s3.us-east-2.amazonaws.com/videos/website/1_main_video.m4v"
+            type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          Perform complex assembly tasks in the real world from RGB observations by learning from demonstrations and
-          refining with reinforcement learning.
+          We show how combining behavior cloning with residual RL enables precise robot manipulation, improving success
+          rates from ~5-50% to >95% on challenging assembly tasks.
         </h2>
       </div>
     </div>
@@ -208,10 +209,135 @@
   </section>
 
 
-
+  <!-- Summary -->
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Real-World Demos</h2>
+      <h2 class="title is-3">The key insight</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Modern chunked BC policies work well for planning trajectory segments but lack the corrective
+          behavior and fine-grained reactivity needed for reliable execution.
+        </p>
+        <p>
+          Even massively scaling the dataset doesn't fully resolve it—Pure BC performance saturates even with 100K
+          demos! Adding residual RL dramatically improves success rates with just 50 demos + RL fine-tuning.
+        </p>
+      </div>
+
+      <video autoplay muted loop playsinline height="100%">
+        <source src="https://iai-robust-rearrangement.s3.us-east-2.amazonaws.com/videos/website/2_scaling_plots.m4v"
+          type="video/mp4">
+      </video>
+
+      <br><br><br>
+
+
+      <h2 class="title is-3">Introducing <code>Resi</code>dual for <code>P</code>recise manipulation</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Our method, ResiP, adds closed-loop corrections via residual RL while keeping the base model frozen. As such,
+          we effectively side-step all complications with applying RL to action-chunked and diffusion policies and
+          retains all modes from pre-training.
+        </p>
+        <p>
+          The reward signal is only with a sparse task completion reward inferred directly from the demos and therefore
+          requires no reward shaping.
+        </p>
+      </div>
+
+      <div class="content has-text-centered is-full-width">
+        <img src="https://iai-robust-rearrangement.s3.us-east-2.amazonaws.com/videos/website/3_residual_schematic.png"
+          alt="" style="width: 100%;">
+      </div>
+
+      <br><br><br>
+
+      <h2 class="title is-3">Closed-loop corrections lead to large performance gains</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          By fine-tuning action-chunked diffusion policies with a per-step residual correction learned with online RL,
+          we can drastically improve success rates for a range of multi-step tasks requiring precise alignments.
+        </p>
+      </div>
+
+      <video autoplay muted loop playsinline height="100%">
+        <source src="https://iai-robust-rearrangement.s3.us-east-2.amazonaws.com/videos/website/4_result_bar_chart.m4v"
+          type="video/mp4">
+      </video>
+
+
+
+      <br><br><br>
+
+      <h2 class="title is-3">Remarkable performance for tight-tolerance tasks</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          ResiP really shines on high-precision tasks. For a 0.2mm clearance peg-in-hole task, we improve from 5% → 99%
+          success! The local nature of residual corrections is perfect for precise alignment.
+        </p>
+      </div>
+
+      <video autoplay muted loop playsinline height="100%">
+        <source
+          src="https://iai-robust-rearrangement.s3.us-east-2.amazonaws.com/videos/website/5_peg_hole_side_by_side.m4v"
+          type="video/mp4">
+      </video>
+
+
+
+      <br><br><br>
+
+      <h2 class="title is-3">What does the residual learn?</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          How does it work? The residual policy learns to make small corrective adjustments to avoid common failure
+          modes:
+
+        <ul>
+          <li>Prevents premature pushing during insertion</li>
+          <li>Maintains better grasp stability</li>
+          <li>Enables recovery from small perturbations</li>
+          <li>Learns new grasping and retrying behaviors (surprisingly!)</li>
+        </ul>
+        </p>
+      </div>
+
+      <!-- make centered div-->
+      <div class="content has-text-centered is-full-width">
+
+
+        <video autoplay muted loop playsinline width="80%">
+          <source
+            src="https://iai-robust-rearrangement.s3.us-east-2.amazonaws.com/videos/website/6_residual_see_through.m4v"
+            type="video/mp4">
+        </video>
+      </div>
+
+
+
+      <br><br><br>
+
+
+      <h2 class="title is-3">Real-World Policies with Sim-to-Real</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified is-full-width">
+            <p>Finally, we demonstrate successful sim-to-real transfer by:
+            </p>
+            <ul>
+              <li>Distilling to vision-based policies</li>
+              <li>Co-training with real demos</li>
+              <li>Using domain randomization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <!-- Start One Leg White -->
       <h3 class="title is-4">Improved assembly on in-distribution task</h3>
@@ -295,6 +421,16 @@
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Sim demos</h2>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified is-full-width">
+            <p>To fully appreciate the difference between imitation only and with the reactive controller learned with
+              RL,
+              please enjoy ~3-7 hours of rollouts per task at 4x speed below. This is 1000 consecutive rollouts for the
+              different policies without any editiing or cherry-picking.</p>
+          </div>
+        </div>
+      </div>
 
       <!-- Start One Leg sim -->
       <h3 class="title is-4">1,000 uncut rollouts for <code>one_leg</code> with <code>low</code> randomness</h3>
@@ -484,7 +620,7 @@
             </ul>
           </div>
           <div class="content has-text-centered is-full-width">
-            <img src="./static/images/main_results.svg" alt="" style="width: 80%;">
+            <img src="./static/images/main_results.png" alt="" style="width: 100%;">
           </div>
           <p>
             <i>Tab. 1:</i> <strong>Top</strong> BC-trained MLPs without chunking (MLP-S) cannot perform any of the
@@ -678,8 +814,25 @@
       </div>
       <!--/ Concurrent Work. -->
 
+      <h2 class="title is-3">Future Directions</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          Exciting future directions: Our method is base-model agnostic - we show it works with diffusion models, ACT,
+          and MLPs!
+        </p>
+        <p>
+          This means it could potentially scale to fine-tuning large multi-task behavior models (like Octo, OpenVLA,
+          etc.) while fully preserving their pre-training capabilities.
+        </p>
+      </div>
 
     </div>
+  </section>
+
+
+
+  </div>
   </section>
 
 
